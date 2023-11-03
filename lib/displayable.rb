@@ -44,10 +44,8 @@ module Displayable
     # 100 = dark gray background (odd)
     # 40 = black background (odd)
     def select_background(row_index, column_index)
-      if @active_piece&.location == [row_index, column_index]
+      if @active_piece&.allowed_moves.include? [row_index, column_index]
         106
-      elsif capture_background?(row_index, column_index)
-        41
       elsif @previous_piece&.location == [row_index, column_index]
         46
       elsif (row_index + column_index).even?
@@ -56,10 +54,7 @@ module Displayable
         40
       end
     end
-  
-    def capture_background?(row, column)
-      @active_piece&.captures&.any?([row, column]) && @data[row][column]
-    end
+
   
     # determines the font colors each square based on specific conditions
     # 97 = white font color (chess pieces)
@@ -71,7 +66,7 @@ module Displayable
       if square
         text_color = square.color == :white ? 97 : 30
         color_square(text_color, background, square.symbol)
-      elsif @active_piece&.moves&.any?([row_index, column_index])
+      elsif @active_square&.moves&.any?([row_index, column_index])
         color_square(41, background, " \u25CF ")
       else
         color_square(90, background, '   ')

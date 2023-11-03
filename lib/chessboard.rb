@@ -4,10 +4,10 @@ require_relative 'pieces/king.rb'
 
 class ChessBoard
     include Displayable
-    attr_accessor :data, :active_square
+    attr_accessor :data, :active_piece
     def initialize
         @data = Array.new(8) { Array.new(8) }
-        @active_square = nil
+        @active_piece = nil
     end
 
     def add(this_piece)
@@ -16,13 +16,13 @@ class ChessBoard
         @data[y][x] = this_piece
     end
 end 
-# king = King.new([5, 5], "white")
+king = King.new([3, 4], "white")
 
 
-# board_test = ChessBoard.new
+board_test = ChessBoard.new
 
-# board_test.add(king)
-# board_test.active_square = king
+board_test.add(king)
+board_test.active_piece = king
 
-
-# board_test.display_chess_board
+board_test.data.each { |row| p row}
+board_test.display_chess_board
