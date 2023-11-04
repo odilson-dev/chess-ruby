@@ -1,6 +1,6 @@
 require_relative 'displayable'
 require_relative 'pieces/king.rb'
-require_relative 'pieces/queen.rb'
+require_relative 'pieces/knight.rb'
 
 
 class ChessBoard
@@ -17,13 +17,13 @@ class ChessBoard
         @data[y][x] = this_piece
     end
 end 
-queen = Queen.new([3, 4], "white")
+knight = Knight.new([0, 0], "white")
 
 
 board_test = ChessBoard.new
 
-board_test.add(queen)
-board_test.active_piece = queen
+board_test.add(knight)
+board_test.active_piece = knight
 
 board_test.data.each { |row| p row}
 board_test.display_chess_board
