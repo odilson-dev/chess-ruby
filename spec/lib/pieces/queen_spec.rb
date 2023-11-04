@@ -25,18 +25,22 @@ RSpec.describe Queen do
             let(:queen) { Queen.new([7, 3], "White", "H") }
             moves_allowed = [[4, 0], [5, 1], [6, 2],
                             [7, 0], [7, 1], [7, 2], [7, 4], [7, 5], [7, 6], [7, 7],
-                            [6, 4], [5, 5], [4, 6], [3, 7]]
-            it "The allowed moves are: [[3,1], [3, 2], [4, 2], [5,2], [5, 1]]" do
+                            [0, 3], [1, 3], [2, 3], [3, 3], [4, 3], [5, 3], [6, 3],
+                            [6, 4], [5, 5], [4, 6], [3, 7], ]
+            it "The allowed moves are: [[4, 0], [5, 1], [6, 2],
+            [7, 0], [7, 1], [7, 2], [7, 4], [7, 5], [7, 6], [7, 7],
+            [6, 4], [5, 5], [4, 6], [3, 7]]" do
                 expect(queen.find_allowed_moves).to be_same_as moves_allowed
             end
         end
 
         context "When the position of the queen is at the corner of the chessboard (eg: [0, 0])" do
-            let(:queen) { Queen.new([8, 8], "White", "H") }
+            let(:queen) { Queen.new([0, 0], "White", "H") }
             moves_allowed = [[0, 1], [0, 2], [0, 3], [0, 4], [0, 5], [0, 6], [0, 7],
                             [1, 1], [2, 2], [3, 3], [4, 4], [5, 5], [6, 6], [7, 7],
                             [1, 0], [2, 0], [3, 0], [4, 0], [5, 0], [6, 0], [7, 0]]
-            it "The allowed moves are: [[7, 8], [7, 7], [8, 7]]" do
+            it "The allowed moves are: [[0, 1], [0, 2], [0, 3], [0, 4], [0, 5], [0, 6], [0, 7],[1, 1], [2, 2], [3, 3], [4, 4], [5, 5], [6, 6], [7, 7],
+            [1, 0], [2, 0], [3, 0], [4, 0], [5, 0], [6, 0], [7, 0]]" do
                 expect(queen.find_allowed_moves).to be_same_as moves_allowed
             end
         end
