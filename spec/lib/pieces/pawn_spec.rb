@@ -8,7 +8,7 @@ RSpec.describe Pawn do
       end
     describe "#find_allowed_moves" do
         context "When the position of the white pawn is in the middle of the chessboard (eg: [4, 3])" do
-            let(:pawn) { Pawn.new([4, 3], "White", "H") }
+            let(:pawn) { Pawn.new([4, 3], "White") }
             moves_allowed = [[3, 3]]
             it "The allowed moves are: [[3, 3]]" do
                 expect(pawn.find_allowed_moves).to be_same_as moves_allowed
@@ -16,7 +16,7 @@ RSpec.describe Pawn do
         end
 
         context "When the position of the white pawn is on the second line, point of view of the owner (eg: [6, 5])" do
-            let(:pawn) { Pawn.new([6, 5], "White", "H") }
+            let(:pawn) { Pawn.new([6, 5], "White") }
             moves_allowed = [[5, 5], [4, 5]]
             it "The allowed moves are: [[5, 5], [4, 5]]" do
                 expect(pawn.find_allowed_moves).to be_same_as moves_allowed
@@ -24,7 +24,7 @@ RSpec.describe Pawn do
         end
 
         context "When the position of the black pawn is in the middle of the chessboard (eg: [4, 3])" do
-            let(:pawn) { Pawn.new([4, 3], "Black", "H") }
+            let(:pawn) { Pawn.new([4, 3], "Black") }
             moves_allowed = [[5, 3]]
             it "The allowed moves are: [[5, 3]]" do
                 expect(pawn.find_allowed_moves).to be_same_as moves_allowed
@@ -32,7 +32,7 @@ RSpec.describe Pawn do
         end
 
         context "When the position of the black pawn is on the second line, point of view of the owner (eg: [1, 4])" do
-            let(:pawn) { Pawn.new([1, 4], "Black", "H") }
+            let(:pawn) { Pawn.new([1, 4], "Black") }
             moves_allowed = [[2, 4], [3, 4]]
             it "The allowed moves are: [[2, 4], [3, 4]]" do
                 expect(pawn.find_allowed_moves).to be_same_as moves_allowed
