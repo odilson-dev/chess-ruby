@@ -3,7 +3,7 @@ require_relative 'piece'
 class Queen < Piece
     attr_reader :allowed_moves
 
-    def initialize(position, color, symbol=" \u265A ", allowed_moves=find_allowed_moves(position[0], position[1]))
+    def initialize(position, color, allowed_moves=find_allowed_moves(position[0], position[1]))
         super(position, color, allowed_moves)
     end
 

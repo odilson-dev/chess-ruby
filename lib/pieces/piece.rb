@@ -8,6 +8,8 @@ class Piece
         @allowed_moves = allowed_moves
     end
 
+    
+    # Allow each subclass instances to automatically find their symbol according to their class name and color
     def symbol
         case self.class.name
         when "King"

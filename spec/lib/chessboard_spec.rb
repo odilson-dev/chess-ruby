@@ -25,4 +25,12 @@ RSpec.describe ChessBoard do
             end
         end
     end
+
+    describe "#prepare_chessboard" do
+        
+        context "When we start a new part" do
+            
+        end
+    end
+
 end
