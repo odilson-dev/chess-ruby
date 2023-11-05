@@ -10,7 +10,7 @@ RSpec.describe Pawn do
         context "When the position of the white pawn is in the middle of the chessboard (eg: [4, 3])" do
             let(:pawn) { Pawn.new([4, 3], "White", "H") }
             moves_allowed = [[3, 3]]
-            it "The allowed moves are: [[[3, 3]]" do
+            it "The allowed moves are: [[3, 3]]" do
                 expect(pawn.find_allowed_moves).to be_same_as moves_allowed
             end
         end
