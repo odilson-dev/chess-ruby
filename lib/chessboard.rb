@@ -1,10 +1,10 @@
 require_relative 'displayable'
-require_relative 'pieces/king.rb'
-require_relative 'pieces/knight.rb'
-require_relative 'pieces/rook.rb'
-require_relative 'pieces/queen.rb'
-require_relative 'pieces/bishop.rb'
-require_relative 'pieces/pawn.rb'
+require_relative 'pieces/king'
+require_relative 'pieces/knight'
+require_relative 'pieces/rook'
+require_relative 'pieces/queen'
+require_relative 'pieces/bishop'
+require_relative 'pieces/pawn'
 
 
 
@@ -58,7 +58,7 @@ class ChessBoard
         bishop_black_2 = Bishop.new([0, 5], "black"),
         knight_black_2 = Knight.new([0, 6], "black"),
         rook_black_2 = Rook.new([0, 7], "black")
-            ]
+        ]
             
 
         8.times do | y |
@@ -73,4 +73,7 @@ end
 board_test = ChessBoard.new
 
 board_test.prepare_chessboard
-p board_test.data
+board_test.active_piece = board_test.data[1][7]
+
+board_test.display_chess_board
+

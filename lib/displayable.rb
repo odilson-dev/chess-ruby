@@ -44,6 +44,7 @@ module Displayable
     # 100 = dark gray background (odd)
     # 40 = black background (odd)
     def select_background(row_index, column_index)
+      
       if @active_piece&.allowed_moves.include? [row_index, column_index]
         106
       elsif @previous_piece&.location == [row_index, column_index]
