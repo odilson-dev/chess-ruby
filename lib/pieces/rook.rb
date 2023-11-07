@@ -9,6 +9,6 @@ class Rook < Piece
     def initialize(position, color, the_chessboard=ChessBoard.new)
         super(position, color)        
         @attack_moves = []
-        @allowed_moves = find_all_moves_perpendicularly(the_chessboard)
+        @allowed_moves = find_both_diagonal_and_perpandicular_moves(the_chessboard)
     end
 end

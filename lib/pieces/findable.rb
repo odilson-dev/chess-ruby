@@ -10,9 +10,6 @@ module Findable
 
         allowed_moves = []
         
-
-        #reinitialise the attack moves for each call
-        @attack_moves = []
         position = [x, y]
         top_right_algorithm = lambda { |position| [position[0] - 1, position[1] + 1] }
         top_right = find_diagonal(top_right_algorithm, the_chessboard)
@@ -61,8 +58,6 @@ module Findable
         x = @position[0]
         y = @position[1]
         allowed_moves = []
-        #reinitialise attack_moves to empty for each call
-        @attack_moves = []
         # up squares
         
         (x-1).downto(0) do | num |
@@ -119,6 +114,30 @@ module Findable
             end
         end
         allowed_moves
+    end
+
+    def find_both_diagonal_and_perpandicular_moves(the_chessboard)
+        #reinitialise the attack moves for each call
+        @attack_moves = []
+
+        if self.class.name == "Rook"
+            perpendicular_moves = find_all_moves_perpendicularly(the_chessboard)
+            return perpendicular_moves
+        elsif self.class.name == "Bishop"
+            diagonal_moves = find_all_moves_diagonally(the_chessboard)
+            return diagonal_moves
+        else
+            all_allowed_moves = []
+
+            diagonal_moves = find_all_moves_diagonally(the_chessboard)
+            perpendicular_moves = find_all_moves_perpendicularly(the_chessboard)
+
+            all_allowed_moves.concat(diagonal_moves)
+            all_allowed_moves.concat(perpendicular_moves)
+
+            return all_allowed_moves
+        end
+        
     end
     
 end
