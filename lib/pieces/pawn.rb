@@ -3,8 +3,10 @@ require_relative 'piece'
 class Pawn < Piece
     attr_reader :color, :allowed_moves
 
-    def initialize(position, color, allowed_moves=find_allowed_moves(position[0], position[1], color))
-        super(position, color, allowed_moves)
+    def initialize(position, color)
+        super(position, color)
+        @attack_moves = []
+        @allowed_moves = find_allowed_moves(position[0], position[1], color)
        
     end
 

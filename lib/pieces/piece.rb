@@ -1,9 +1,8 @@
 class Piece
-    attr_accessor :position, :color, :allowed_moves
-    def initialize(position, color, allowed_moves)
+    attr_accessor :position, :color
+    def initialize(position, color)
         @position = position
         @color = color
-        @allowed_moves = allowed_moves
         @pawn_color = nil
     end
 
