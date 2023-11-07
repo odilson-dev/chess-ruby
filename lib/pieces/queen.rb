@@ -1,10 +1,11 @@
 require_relative 'piece'
+require_relative '../chessboard'
 
 class Queen < Piece
     attr_reader :allowed_moves
-
-    def initialize(position, color, allowed_moves=find_allowed_moves(position[0], position[1]))
-        super(position, color, allowed_moves)
+    def initialize(position, color)
+        super(position, color)
+        @allowed_moves = find_allowed_moves(position[0], position[1])
     end
 
     # This method allows the queen piece to find all his allowed moves from any position on the chessboard.
