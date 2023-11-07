@@ -47,7 +47,6 @@ RSpec.describe Rook do
                 chessboard_1.add(pawn_3)
                 chessboard_1.add(pawn_4)
                 rook.find_allowed_moves(chessboard_1)
-                rook.find_allowed_moves(chessboard_1)
             end
             moves_allowed = [[3, 2], [2, 3], [3, 4], [3, 5], [4, 3], [5, 3]]
             it "The allowed moves are: [[[3, 2], [2, 3], [3, 4], [3, 5], [4, 3], [5, 3]]" do
