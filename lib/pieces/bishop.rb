@@ -11,7 +11,4 @@ class Bishop < Piece
         @allowed_moves = find_all_moves_diagonally(the_chessboard)
     end
 
-   
-    
-    
 end

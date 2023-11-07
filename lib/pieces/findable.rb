@@ -2,7 +2,8 @@
 require_relative '../chessboard'
 
 module Findable
-     # This method allows a bishop piece to find all his allowed moves from any position on the table
+
+     # This method allows a bishops piece to find all their allowed moves from any position on the table
     def find_all_moves_diagonally(the_chessboard = ChessBoard.new )
         x = @position[0]
         y = @position[1]
@@ -50,6 +51,71 @@ module Findable
             else
                 break if (position[0] < 0 or position[0] > 7 or position[1] < 0 or position[1] > 7)
                 allowed_moves << position
+            end
+        end
+        allowed_moves
+    end
+
+    # This method allows Rook pieces to find all their allowed moves from any position on the table
+    def find_all_moves_perpendicularly(the_chessboard = ChessBoard.new)
+        x = @position[0]
+        y = @position[1]
+        allowed_moves = []
+        #reinitialise attack_moves to empty for each call
+        @attack_moves = []
+        # up squares
+        
+        (x-1).downto(0) do | num |
+            move = [num, y]
+            if the_chessboard.data[num][y]&.color == @color
+                break
+            elsif the_chessboard.data[num][y]&.color.is_a?(String) && the_chessboard.data[num][y]&.color != @color
+                @attack_moves << move
+                break
+            else
+                allowed_moves << move
+            end
+        end
+
+        # down squares
+        
+        (x+1).upto(7) do | num |
+            move = [num, y]
+            if the_chessboard.data[num][y]&.color == @color
+                break
+            elsif the_chessboard.data[num][y]&.color.is_a?(String) && the_chessboard.data[num][y]&.color != @color
+                @attack_moves
+                @attack_moves << move
+                break
+            else
+                allowed_moves << move
+            end
+        end
+
+        # #left squares
+        (y-1).downto(0) do | num |
+            move = [x, num]
+            if the_chessboard.data[x][num]&.color == @color
+                break
+            elsif the_chessboard.data[x][num]&.color.is_a?(String) && the_chessboard.data[num][y]&.color != @color
+                @attack_moves << move
+                break
+            else
+                allowed_moves << move
+            end
+        end
+
+        # #right squares
+        (y+1).upto(7) do | num |
+            move = [x, num]
+            
+            if the_chessboard.data[x][num]&.color == @color
+                break
+            elsif the_chessboard.data[x][num]&.color.is_a?(String) && the_chessboard.data[num][y]&.color != @color
+                @attack_moves << move
+                break
+            else
+                allowed_moves << move
             end
         end
         allowed_moves

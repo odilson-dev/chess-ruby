@@ -35,7 +35,7 @@ RSpec.describe Rook do
             end
         end
         context "When the posxition of the white rook is in the middle of the chessboard (eg: [3, 3]), and there is 1 black pawns on each side of the row" do
-            let(:rook) { Rook.new([3, 3], "white") }
+            
             let(:chessboard_1) { ChessBoard.new }
             before do
                 pawn_1 = Pawn.new([1, 3], "black")
@@ -46,11 +46,11 @@ RSpec.describe Rook do
                 chessboard_1.add(pawn_2)
                 chessboard_1.add(pawn_3)
                 chessboard_1.add(pawn_4)
-                rook.find_allowed_moves(chessboard_1)
             end
+            let(:rook) { Rook.new([3, 3], "white", chessboard_1) }
             moves_allowed = [[3, 2], [2, 3], [3, 4], [3, 5], [4, 3], [5, 3]]
             it "The allowed moves are: [[[3, 2], [2, 3], [3, 4], [3, 5], [4, 3], [5, 3]]" do
-                expect(rook.find_allowed_moves(chessboard_1)).to be_same_as moves_allowed
+                expect(rook.allowed_moves).to be_same_as moves_allowed
             end
             attack_moves = [[1, 3], [3, 1], [6, 3], [3, 6]]
             it "set the attack_moves to [[1, 3], [3, 1], [6, 3], [3, 6]]" do
@@ -59,7 +59,7 @@ RSpec.describe Rook do
         end
 
         context "When the posxition of the white rook is in the middle of the chessboard (eg: [3, 3]), and there is 1 white pawn on each side of the row" do
-            let(:rook) { Rook.new([3, 3], "white") }
+            
             let(:chessboard_2) { ChessBoard.new }
             before do
                 pawn_1 = Pawn.new([1, 3], "white")
@@ -70,11 +70,11 @@ RSpec.describe Rook do
                 chessboard_2.add(pawn_2)
                 chessboard_2.add(pawn_3)
                 chessboard_2.add(pawn_4)
-                rook.find_allowed_moves(chessboard_2)
             end
+            let(:rook) { Rook.new([3, 3], "white", chessboard_2) }
             moves_allowed = [[3, 2], [2, 3], [3, 4], [3, 5], [4, 3], [5, 3]]
             it "The allowed moves are: [[[3, 2], [2, 3], [3, 4], [3, 5], [4, 3], [5, 3]]" do
-                expect(rook.find_allowed_moves(chessboard_2)).to be_same_as moves_allowed
+                expect(rook.allowed_moves).to be_same_as moves_allowed
             end
             attack_moves = []
             it "expect the attack_moves to be empty" do
