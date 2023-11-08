@@ -3,7 +3,7 @@ require_relative '../chessboard'
 
 module Findable
 
-     # Allows a bishops piece to find all their allowed moves from any position on the table
+    # Allows a bishops piece to find all their allowed moves from any position on the table
     def find_all_moves_diagonally(the_chessboard = ChessBoard.new )
         x = @position[0]
         y = @position[1]
