@@ -91,7 +91,6 @@ RSpec.describe Queen do
             it "The allowed moves are: [[1, 0], [2, 1], [3, 2], [2, 3], [3, 3], [4, 0], [4, 1], [4, 2], [4, 4], [5, 2], [5, 3], [5, 4], [6, 1], [6, 3], [6, 5], [7, 3], [7, 6]]" do
                 expect(queen.allowed_moves).to be_same_as moves_allowed
             end
-            attack_moves = []
             it "expect the attack_moves to be empty" do
                 expect(queen.attack_moves).to be_empty
             end

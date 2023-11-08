@@ -1,14 +1,16 @@
 require_relative 'piece'
+require_relative '../chessboard'
 
 class Knight < Piece
     attr_reader :allowed_moves
 
-    def initialize(position, color, allowed_moves=find_allowed_moves(position[0], position[1]))
-        super(position, color, allowed_moves)
+    def initialize(position, color, the_chessboard= ChessBoard.new)
+        super(position, color)
+        @allowed_moves = find_allowed_moves
     end
 
     # This method allows the this piece to find all his allowed moves from any position on the table
-    def find_allowed_moves(x=@position[0], y=@position[1])
+    def find_allowed_moves()
     moves_allowed = []
     left_side = [[x - 1, y - 2], [x - 2, y - 1], [x + 1, y - 2], [x + 2, y - 1]]
     right_side = [[x - 2, y + 1], [x - 1, y + 2], [x + 1, y + 2], [x + 2, y + 1]]
