@@ -77,7 +77,6 @@ RSpec.describe Bishop do
             it "The allowed moves are: [[3, 2], [2, 5], [3, 4], [5, 4], [6, 5]]" do
                 expect(bishop.allowed_moves).to be_same_as moves_allowed
             end
-            attack_moves = []
             it "expect the attack_moves to be empty" do
                 expect(bishop.attack_moves).to be_empty
             end

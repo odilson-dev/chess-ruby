@@ -76,7 +76,6 @@ RSpec.describe Rook do
             it "The allowed moves are: [[[3, 2], [2, 3], [3, 4], [3, 5], [4, 3], [5, 3]]" do
                 expect(rook.allowed_moves).to be_same_as moves_allowed
             end
-            attack_moves = []
             it "expect the attack_moves to be empty" do
                 expect(rook.attack_moves).to be_empty
             end
