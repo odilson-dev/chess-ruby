@@ -3,7 +3,7 @@ require_relative '../chessboard'
 
 module Findable
 
-     # This method allows a bishops piece to find all their allowed moves from any position on the table
+     # Allows a bishops piece to find all their allowed moves from any position on the table
     def find_all_moves_diagonally(the_chessboard = ChessBoard.new )
         x = @position[0]
         y = @position[1]
@@ -31,6 +31,7 @@ module Findable
        
     end
 
+    # Find each diagonal row
     def find_diagonal(algorithm, the_chessboard)
         x = @position[0]
         y = @position[1]
@@ -53,7 +54,7 @@ module Findable
         allowed_moves
     end
 
-    # This method allows Rook pieces to find all their allowed moves from any position on the table
+    # Allows Rook pieces to find all their allowed moves from any position on the table
     def find_all_moves_perpendicularly(the_chessboard = ChessBoard.new)
         x = @position[0]
         y = @position[1]
