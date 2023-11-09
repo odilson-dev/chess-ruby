@@ -2,6 +2,7 @@ require_relative 'piece'
 require_relative '../chessboard'
 require_relative 'findable.rb'
 
+
 class Rook < Piece
     attr_reader :allowed_moves, :attack_moves
     include Findable

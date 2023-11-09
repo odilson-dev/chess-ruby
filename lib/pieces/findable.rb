@@ -3,7 +3,7 @@ require_relative '../chessboard'
 
 module Findable
 
-    # Allows a bishops piece to find all their allowed moves from any position on the table
+    # Allows Bishop instances to find all their allowed moves from any position on the chessboard
     def find_all_moves_diagonally(the_chessboard = ChessBoard.new )
         x = @position[0]
         y = @position[1]
@@ -54,7 +54,7 @@ module Findable
         allowed_moves
     end
 
-    # Allows Rook pieces to find all their allowed moves from any position on the table
+    # Allows Rook instances to find all their allowed moves from any position on the chessboard
     def find_all_moves_perpendicularly(the_chessboard = ChessBoard.new)
         x = @position[0]
         y = @position[1]
@@ -116,7 +116,7 @@ module Findable
         end
         allowed_moves
     end
-
+    # Allow the Queen instances to find all their allowed moves from any position on the chessboard
     def find_both_diagonal_and_perpandicular_moves(the_chessboard)
         #reinitialise the attack moves for each call
         @attack_moves = []
@@ -177,6 +177,39 @@ module Findable
         all_moves = all_moves.select { |position| (position[0] >= 0 && position[0] <= 7) && (position[1] >= 0 && position[1] <= 7) }
 
         allowed_moves = []
+        all_moves.each do |position|
+            if the_chessboard.data.dig(position[0], position[1])&.color == @color
+                next
+            elsif the_chessboard.data.dig(position[0], position[1])&.color.is_a?(String) && the_chessboard.data.dig(position[0], position[1])&.color != @color
+                @attack_moves << position
+            else
+                allowed_moves << position
+            end
+        end
+        allowed_moves
+    end
+
+    # Allows the King instances to find all their allowed moves from any position on the chessboard
+    def find_allowed_moves_for_the_king(the_chessboard)
+        x=@position[0]
+        y=@position[1]
+        all_moves = []
+        @attack_moves = []
+        # for x
+        for_x = [[x, y + 1], [x, y - 1]]
+
+        # for_x - 1
+        for_x_minus_1 = [[x - 1, y + 1], [x - 1, y], [x - 1, y - 1]]
+
+        # for_x + 1
+        for_x_plus_1 = [[x + 1, y + 1], [x + 1, y], [x + 1, y - 1]]
+
+        all_moves.concat(for_x, for_x_minus_1, for_x_plus_1)
+        all_moves.select! { |position| (position[0] >= 0 && position[0] <= 7) && (position[1] >= 0 && position[1] <= 7) }
+
+
+        allowed_moves = []
+        
         all_moves.each do |position|
             if the_chessboard.data.dig(position[0], position[1])&.color == @color
                 next
