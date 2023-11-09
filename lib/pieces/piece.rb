@@ -1,10 +1,8 @@
 class Piece
-    attr_accessor :position, :color, :allowed_moves
-    def initialize(position, color, allowed_moves)
+    attr_accessor :position, :color
+    def initialize(position, color)
         @position = position
         @color = color
-        @allowed_moves = allowed_moves
-        @pawn_color = nil
     end
 
     
@@ -22,13 +20,7 @@ class Piece
         when "Knight"
             @color == "white" ? " \u2658 " : " \u265E "
         when "Pawn"
-            if @color == "white" 
-                @pawn_color = "white"
-                " \u2659 "
-            else
-                @pawn_color = "black"
-                 " \u265F "
-            end
+            @color == "white" ? " \u2659 " : " \u265F"
         end
     end
 end

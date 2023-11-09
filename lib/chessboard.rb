@@ -70,10 +70,3 @@ class ChessBoard
 end
 
 
-board_test = ChessBoard.new
-
-board_test.prepare_chessboard
-board_test.active_piece = board_test.data[1][7]
-
-board_test.display_chess_board
-

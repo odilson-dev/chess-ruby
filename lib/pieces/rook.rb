@@ -1,32 +1,15 @@
 require_relative 'piece'
+require_relative '../chessboard'
+require_relative 'findable.rb'
+
 
 class Rook < Piece
-    attr_reader :allowed_moves
+    attr_reader :allowed_moves, :attack_moves
+    include Findable
 
-    def initialize(position, color, allowed_moves=find_allowed_moves(position[0], position[1]))
-        super(position, color, allowed_moves)
-    end
-
-    # This method allows the this piece to find all his allowed moves from any position on the table
-    def find_allowed_moves(x=@position[0], y=@position[1])
-        allowed_moves = []
-        8.times do | count |
-            if count == x
-                next
-            else
-                move = [count, y]
-                allowed_moves << move
-            end
-        end
-
-        8.times do | count |
-            if count == y
-                next
-            else
-                move = [x, count]
-                allowed_moves << move
-            end
-        end
-        allowed_moves
+    def initialize(position, color, the_chessboard=ChessBoard.new)
+        super(position, color)        
+        @attack_moves = []
+        @allowed_moves = find_both_diagonal_and_perpandicular_moves(the_chessboard)
     end
 end
