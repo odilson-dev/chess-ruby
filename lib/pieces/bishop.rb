@@ -1,6 +1,8 @@
 require_relative 'piece'
 require_relative '../chessboard'
 require_relative 'findable'
+
+
 class Bishop < Piece
     attr_reader  :attack_moves, :allowed_moves
     include Findable

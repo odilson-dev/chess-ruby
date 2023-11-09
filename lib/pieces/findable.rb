@@ -140,5 +140,53 @@ module Findable
         end
         
     end
+
+    # Allow the Pawns instances to find all their allowed moves from any position on the chessboard
+    def find_allowed_moves_for_pawns(the_chessboard)
+        x=@position[0]
+        y=@position[1]
+
+        if @color == "white"
+            if x == 6
+                allowed_moves = [[x - 1, y], [x - 2, y]]
+            else
+                allowed_moves = [[x - 1, y]]
+            end
+        else
+            if x == 1
+                allowed_moves = [[x + 1, y], [x + 2, y]]
+            else
+                allowed_moves = [[x + 1, y]]
+            end
+        end
+        allowed_moves.select do |position|
+            the_chessboard.data.dig(position[0], position[1]).nil?
+        end
+    end
+
+    # Allows the knights instances to find all their allowed moves from any position on the table
+    def find_allowed_moves_for_knights(the_chessboard)
+        x=@position[0]
+        y=@position[1]
+        all_moves = []
+        left_side = [[x - 1, y - 2], [x - 2, y - 1], [x + 1, y - 2], [x + 2, y - 1]]
+        right_side = [[x - 2, y + 1], [x - 1, y + 2], [x + 1, y + 2], [x + 2, y + 1]]
+        all_moves = left_side.concat right_side
+
+        # remove all the position that aren't part of the chessboard 
+        all_moves = all_moves.select { |position| (position[0] >= 0 && position[0] <= 7) && (position[1] >= 0 && position[1] <= 7) }
+
+        allowed_moves = []
+        all_moves.each do |position|
+            if the_chessboard.data.dig(position[0], position[1])&.color == @color
+                next
+            elsif the_chessboard.data.dig(position[0], position[1])&.color.is_a?(String) && the_chessboard.data.dig(position[0], position[1])&.color != @color
+                @attack_moves << position
+            else
+                allowed_moves << position
+            end
+        end
+        allowed_moves
+    end
     
 end
