@@ -11,7 +11,7 @@ def setup(current_chessboard)
     white_pieces = [
     rook_white_1 = Rook.new([7, 0], "white", current_chessboard),
     knight_white_1 = Knight.new([7, 1], "white", current_chessboard),
-    bishop_white_1 = Bishop.new([3, 2], "white", current_chessboard),
+    bishop_white_1 = Bishop.new([7, 2], "white", current_chessboard),
 
     king_white = King.new([7, 3], "white", current_chessboard),
     queen_white = Queen.new([7, 4], "white", current_chessboard),
