@@ -23,7 +23,7 @@ def setup(current_chessboard)
     
 
     8.times do | y |
-        current_chessboard.add(Pawn.new([5, y], "white", current_chessboard))
+        current_chessboard.add(Pawn.new([6, y], "white", current_chessboard))
     end
 
     white_pieces.each { |piece| current_chessboard.add(piece) }
@@ -32,7 +32,7 @@ def setup(current_chessboard)
     
     black_pieces = [
     rook_black_1 = Rook.new([0, 0], "black", current_chessboard),
-    knight_black_1 = Knight.new([0, 1], "black", current_chessboard),
+    knight_black_1 = Knight.new([5, 2], "black", current_chessboard),
     bishop_black_1 = Bishop.new([0, 2], "black", current_chessboard),
 
     king_black = King.new([0, 3], "black", current_chessboard),

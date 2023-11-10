@@ -1,4 +1,5 @@
-require_relative '../../../lib/pieces/knight.rb'
+require_relative '../../../lib/pieces/knight'
+require_relative '../../../lib/pieces/pawn'
 
 RSpec.describe Knight do
     RSpec::Matchers.define :be_same_as do |second_array|
