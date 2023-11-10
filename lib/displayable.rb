@@ -50,7 +50,7 @@ module Displayable
     def select_background(row_index, column_index)
       if @active_piece&.position == [row_index, column_index]
         106
-      elsif @active_piece&.attack_moves&.include? [row_index, column_index]
+      elsif @active_piece&.attack_moves(self)&.include? [row_index, column_index]
         41
       elsif @active_piece&.allowed_moves(self)&.include? [row_index, column_index]
         42

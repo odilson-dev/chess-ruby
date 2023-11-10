@@ -18,7 +18,7 @@ def setup(current_chessboard)
 
     bishop_white_2 = Bishop.new([3, 3], "white", current_chessboard),
     knight_white_2 = Knight.new([7, 6], "white", current_chessboard),
-    rook_white_2 = Rook.new([7, 7], "white", current_chessboard)
+    rook_white_2 = Rook.new([2, 3], "white", current_chessboard)
     ]
     
 

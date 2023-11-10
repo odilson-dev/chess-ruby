@@ -59,6 +59,7 @@ module Findable
         x = @position[0]
         y = @position[1]
         allowed_moves = []
+        @attack_moves = []
         # up squares
         
         (x-1).downto(0) do | num |
@@ -80,7 +81,7 @@ module Findable
             if the_chessboard.data[num][y]&.color == @color
                 break
             elsif the_chessboard.data[num][y]&.color.is_a?(String) && the_chessboard.data[num][y]&.color != @color
-                @attack_moves
+                
                 @attack_moves << move
                 break
             else
@@ -88,16 +89,17 @@ module Findable
             end
         end
 
-        # #left squares
+        #left squares
         (y-1).downto(0) do | num |
             move = [x, num]
             if the_chessboard.data[x][num]&.color == @color
                 break
-            elsif the_chessboard.data[x][num]&.color.is_a?(String) && the_chessboard.data[num][y]&.color != @color
+            elsif the_chessboard.data[x][num]&.color.is_a?(String) && the_chessboard.data[x][num]&.color != @color
                 @attack_moves << move
                 break
             else
                 allowed_moves << move
+                p allowed_moves
             end
         end
 
@@ -107,8 +109,8 @@ module Findable
             
             if the_chessboard.data[x][num]&.color == @color
                 break
-            elsif the_chessboard.data[x][num]&.color.is_a?(String) && the_chessboard.data[num][y]&.color != @color
-                @attack_moves_bishop << move
+            elsif the_chessboard.data[x][num]&.color.is_a?(String) && the_chessboard.data[x][num]&.color != @color
+                @attack_moves << move
                 
                 break
             else
