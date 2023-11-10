@@ -8,7 +8,6 @@ class Pawn < Piece
 
     def initialize(position, color, the_chessboard=ChessBoard.new)
         super(position, color)
-        @attack_moves = find_attack_moves(the_chessboard)
         @the_chessboard = the_chessboard
     end
 
@@ -17,7 +16,7 @@ class Pawn < Piece
     end
     
 
-    def find_attack_moves(the_chessboard)
+    def attack_moves(the_chessboard = @the_chessboard)
         x=@position[0]
         y=@position[1]
         if @color == "white"

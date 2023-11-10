@@ -145,16 +145,33 @@ module Findable
     def find_allowed_moves_for_pawns(the_chessboard)
         x=@position[0]
         y=@position[1]
-
+        allowed_moves = []
         if @color == "white"
             if x == 6
-                allowed_moves = [[x - 1, y], [x - 2, y]]
+                all_moves = [[x - 1, y], [x - 2, y]]
+
+                all_moves.each do |position|
+                    if the_chessboard.data.dig(position[0], position[1]).nil?
+                        allowed_moves << position
+                    else
+                        break
+                    end
+                end
+                
             else
                 allowed_moves = [[x - 1, y]]
             end
         else
             if x == 1
-                allowed_moves = [[x + 1, y], [x + 2, y]]
+                all_moves = [[x + 1, y], [x + 2, y]]
+                
+                all_moves.each do |position|
+                    if the_chessboard.data.dig(position[0], position[1]).nil?
+                        allowed_moves << position
+                    else
+                        break
+                    end
+                end
             else
                 allowed_moves = [[x + 1, y]]
             end
