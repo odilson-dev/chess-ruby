@@ -20,7 +20,7 @@ class Piece
         when "Knight"
             @color == "white" ? " \u2658 " : " \u265E "
         when "Pawn"
-            @color == "white" ? " \u2659 " : " \u265F"
+            @color == "white" ? " \u2659 " : " \u265F "
         end
     end
 end

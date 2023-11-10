@@ -44,7 +44,7 @@ module Findable
             if the_chessboard.data.dig(position[0], position[1])&.color == @color
                 break
             elsif the_chessboard.data.dig(position[0], position[1])&.color.is_a?(String) && the_chessboard.data.dig(position[0], position[1])&.color != @color
-                @attack_moves << position
+                
                 break
             else
                 break if (position[0] < 0 or position[0] > 7 or position[1] < 0 or position[1] > 7)
@@ -108,7 +108,8 @@ module Findable
             if the_chessboard.data[x][num]&.color == @color
                 break
             elsif the_chessboard.data[x][num]&.color.is_a?(String) && the_chessboard.data[num][y]&.color != @color
-                @attack_moves << move
+                @attack_moves_bishop << move
+                
                 break
             else
                 allowed_moves << move
@@ -119,7 +120,6 @@ module Findable
     # Allow the Queen instances to find all their allowed moves from any position on the chessboard
     def find_both_diagonal_and_perpandicular_moves(the_chessboard)
         #reinitialise the attack moves for each call
-        @attack_moves = []
 
         if self.class.name == "Rook"
             perpendicular_moves = find_all_moves_perpendicularly(the_chessboard)

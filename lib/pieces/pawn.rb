@@ -3,16 +3,18 @@ require_relative '../chessboard'
 require_relative 'findable'
 
 class Pawn < Piece
-    attr_reader :color, :allowed_moves, :attack_moves
+    attr_reader :attack_moves
     include Findable
 
     def initialize(position, color, the_chessboard=ChessBoard.new)
         super(position, color)
         @attack_moves = find_attack_moves(the_chessboard)
-        @allowed_moves = find_allowed_moves_for_pawns(the_chessboard)
-       
+        @the_chessboard = the_chessboard
     end
 
+    def allowed_moves(the_chessboard = @the_chessboard)
+        find_allowed_moves_for_pawns(the_chessboard)
+    end
     
 
     def find_attack_moves(the_chessboard)
