@@ -8,9 +8,11 @@ module Displayable
     def display_chess_board
       # system 'clear'
       puts
-      puts "\e[36m    a  b  c  d  e  f  g  h \e[0m"
+      puts "\e[36m    0  1  2  3  4  5  6  7 \e[0m"
+      # puts "\e[36m    a  b  c  d  e  f  g  h \e[0m"
       print_board
-      puts "\e[36m    a  b  c  d  e  f  g  h \e[0m"
+      # puts "\e[36m    a  b  c  d  e  f  g  h \e[0m"
+      puts "\e[36m    0  1  2  3  4  5  6  7 \e[0m"
       puts
     end
   
@@ -18,9 +20,11 @@ module Displayable
     # 36 = cyan colored text
     def print_board
       @data.each_with_index do |row, index|
-        print "\e[36m #{8 - index} \e[0m"
+        # print "\e[36m #{8 - index} \e[0m"
+        print "\e[36m #{0 + index} \e[0m"
         print_row(row, index)
-        print "\e[36m #{8 - index} \e[0m"
+        print "\e[36m #{0 + index} \e[0m"
+        # print "\e[36m #{8 - index} \e[0m"
         puts
       end
     end
@@ -44,11 +48,14 @@ module Displayable
     # 100 = dark gray background (odd)
     # 40 = black background (odd)
     def select_background(row_index, column_index)
-      if @active_piece&.attack_moves&.include? [row_index, column_index]
-        96
-      elsif @active_piece&.allowed_moves&.include? [row_index, column_index]
+      if @active_piece&.position == [row_index, column_index]
         106
+      elsif @active_piece&.attack_moves(self)&.include? [row_index, column_index]
+        41
+      elsif @active_piece&.allowed_moves(self)&.include? [row_index, column_index]
+        42
       elsif @previous_piece&.location == [row_index, column_index]
+        @previous_piece&.location
         46
       elsif (row_index + column_index).even?
         100

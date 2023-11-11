@@ -18,8 +18,3 @@ class ChessBoard
     end
 
 end
-
-chessboard = ChessBoard.new
-
-
-chessboard.display_chess_board

@@ -44,7 +44,7 @@ module Findable
             if the_chessboard.data.dig(position[0], position[1])&.color == @color
                 break
             elsif the_chessboard.data.dig(position[0], position[1])&.color.is_a?(String) && the_chessboard.data.dig(position[0], position[1])&.color != @color
-                @attack_moves << position
+                
                 break
             else
                 break if (position[0] < 0 or position[0] > 7 or position[1] < 0 or position[1] > 7)
@@ -59,6 +59,7 @@ module Findable
         x = @position[0]
         y = @position[1]
         allowed_moves = []
+        @attack_moves = []
         # up squares
         
         (x-1).downto(0) do | num |
@@ -80,7 +81,7 @@ module Findable
             if the_chessboard.data[num][y]&.color == @color
                 break
             elsif the_chessboard.data[num][y]&.color.is_a?(String) && the_chessboard.data[num][y]&.color != @color
-                @attack_moves
+                
                 @attack_moves << move
                 break
             else
@@ -88,12 +89,12 @@ module Findable
             end
         end
 
-        # #left squares
+        #left squares
         (y-1).downto(0) do | num |
             move = [x, num]
             if the_chessboard.data[x][num]&.color == @color
                 break
-            elsif the_chessboard.data[x][num]&.color.is_a?(String) && the_chessboard.data[num][y]&.color != @color
+            elsif the_chessboard.data[x][num]&.color.is_a?(String) && the_chessboard.data[x][num]&.color != @color
                 @attack_moves << move
                 break
             else
@@ -107,7 +108,7 @@ module Findable
             
             if the_chessboard.data[x][num]&.color == @color
                 break
-            elsif the_chessboard.data[x][num]&.color.is_a?(String) && the_chessboard.data[num][y]&.color != @color
+            elsif the_chessboard.data[x][num]&.color.is_a?(String) && the_chessboard.data[x][num]&.color != @color
                 @attack_moves << move
                 break
             else
@@ -119,7 +120,6 @@ module Findable
     # Allow the Queen instances to find all their allowed moves from any position on the chessboard
     def find_both_diagonal_and_perpandicular_moves(the_chessboard)
         #reinitialise the attack moves for each call
-        @attack_moves = []
 
         if self.class.name == "Rook"
             perpendicular_moves = find_all_moves_perpendicularly(the_chessboard)
@@ -145,16 +145,33 @@ module Findable
     def find_allowed_moves_for_pawns(the_chessboard)
         x=@position[0]
         y=@position[1]
-
+        allowed_moves = []
         if @color == "white"
             if x == 6
-                allowed_moves = [[x - 1, y], [x - 2, y]]
+                all_moves = [[x - 1, y], [x - 2, y]]
+
+                all_moves.each do |position|
+                    if the_chessboard.data.dig(position[0], position[1]).nil?
+                        allowed_moves << position
+                    else
+                        break
+                    end
+                end
+                
             else
                 allowed_moves = [[x - 1, y]]
             end
         else
             if x == 1
-                allowed_moves = [[x + 1, y], [x + 2, y]]
+                all_moves = [[x + 1, y], [x + 2, y]]
+                
+                all_moves.each do |position|
+                    if the_chessboard.data.dig(position[0], position[1]).nil?
+                        allowed_moves << position
+                    else
+                        break
+                    end
+                end
             else
                 allowed_moves = [[x + 1, y]]
             end
