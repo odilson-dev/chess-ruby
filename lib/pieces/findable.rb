@@ -99,7 +99,6 @@ module Findable
                 break
             else
                 allowed_moves << move
-                p allowed_moves
             end
         end
 
@@ -111,7 +110,6 @@ module Findable
                 break
             elsif the_chessboard.data[x][num]&.color.is_a?(String) && the_chessboard.data[x][num]&.color != @color
                 @attack_moves << move
-                
                 break
             else
                 allowed_moves << move
