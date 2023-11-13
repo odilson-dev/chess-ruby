@@ -36,7 +36,7 @@ def setup(current_chessboard)
     bishop_black_1 = Bishop.new([0, 2], "black", current_chessboard),
 
     king_black = King.new([0, 3], "black", current_chessboard),
-    queen_black = Queen.new([3, 3], "black", current_chessboard),
+    queen_black = Queen.new([0, 4], "black", current_chessboard),
 
     bishop_black_2 = Bishop.new([0, 5], "black", current_chessboard),
     knight_black_2 = Knight.new([0, 6], "black", current_chessboard),
@@ -50,3 +50,12 @@ def setup(current_chessboard)
 
     black_pieces.each { |piece| current_chessboard.add(piece) }
 end
+
+sample_chessboard = ChessBoard.new
+setup(sample_chessboard) 
+
+king_black = King.new([3, 3], "black", sample_chessboard)
+sample_chessboard.add(king_black)
+sample_chessboard.display
+sample_chessboard.remove(king_black)
+sample_chessboard.display
