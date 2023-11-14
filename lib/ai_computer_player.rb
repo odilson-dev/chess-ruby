@@ -24,6 +24,15 @@ class AI < Player
         
         piece_choosed
     end
+
+    def choose_a_position_to_move(my_piece)
+        if my_piece.attack_moves.empty?
+            position = my_piece.allowed_moves.sample
+        else
+            position = my_piece.attack_moves.sample
+        end
+        position
+    end
 end
 
 chessboard = ChessBoard.new
