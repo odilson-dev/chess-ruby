@@ -142,11 +142,14 @@ class ChessGame
         current_player = player_1
         loop do
             @chessboard.display
-            puts "#{current_player.name}'s captured pieces:"
-            puts current_player.captured_pieces.map { |piece| piece.symbol }.join(" ").colorize(background: :cyan)
+            current_player.show_captured_piece
             puts "It's #{current_player.name}'s turn"
             puts "Choose the piece you want to move. eg(d1)"
-            position_of_the_choosed_piece = gets.chomp
+            if current_player.class.name == "Player"
+                position_of_the_choosed_piece = gets.chomp
+            else
+                position_of_the_choosed_piece = current_player.choose_a_piece_to_move(@chessboard)
+            end
             
             if position_of_the_choosed_piece.length != 2
                 puts "Invalid input".light_red
@@ -173,7 +176,11 @@ class ChessGame
                     puts current_player.captured_pieces.map { |piece| piece.symbol }.join(" ").colorize(background: :cyan)
                     loop do
                         puts "Choose the position you want to move your piece to"
-                        new_position = gets.chomp
+                        if current_player.class.name == "Player"
+                            new_position = gets.chomp
+                        else
+                            new_position = current_player.choose_a_position_to_move(@chessboard.active_piece)
+                        end
                         if new_position.length != 2
                             puts "Invalid input".light_red
                             puts "Your position should be two characters length".light_blue
@@ -268,7 +275,7 @@ class ChessGame
 end
 
 game = ChessGame.new
-game.play_with_two_humans
+game.play_between_human_and_ai
 
 chessboard = ChessBoard.new
 
