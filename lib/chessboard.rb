@@ -17,4 +17,10 @@ class ChessBoard
         @data[y][x] = this_piece
     end
 
+    def remove(this_piece)
+        x = this_piece.position[1]
+        y = this_piece.position[0]
+        @data[y][x] = nil
+    end
+
 end

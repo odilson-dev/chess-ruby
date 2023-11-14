@@ -4,12 +4,10 @@ require_relative 'findable'
 
 
 class Knight < Piece
-    attr_reader :attack_moves
     include Findable
 
     def initialize(position, color, the_chessboard = ChessBoard.new)
         super(position, color)
-        @attack_moves = []
         @the_chessboard = the_chessboard
     end
 

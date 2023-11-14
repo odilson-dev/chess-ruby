@@ -50,12 +50,3 @@ def setup(current_chessboard)
 
     black_pieces.each { |piece| current_chessboard.add(piece) }
 end
-
-sample_chessboard = ChessBoard.new
-setup(sample_chessboard) 
-
-king_black = King.new([3, 3], "black", sample_chessboard)
-sample_chessboard.add(king_black)
-sample_chessboard.display
-sample_chessboard.remove(king_black)
-sample_chessboard.display

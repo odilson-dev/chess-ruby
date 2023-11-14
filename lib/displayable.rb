@@ -5,14 +5,12 @@ module Displayable
   
     # outputs the chess board with letter and number coordinates
     # 36 = cyan colored text
-    def display_chess_board
-      # system 'clear'
+    def display
+      system 'clear'
       puts
-      puts "\e[36m    0  1  2  3  4  5  6  7 \e[0m"
-      # puts "\e[36m    a  b  c  d  e  f  g  h \e[0m"
+      puts "\e[36m    a  b  c  d  e  f  g  h \e[0m"
       print_board
-      # puts "\e[36m    a  b  c  d  e  f  g  h \e[0m"
-      puts "\e[36m    0  1  2  3  4  5  6  7 \e[0m"
+      puts "\e[36m    a  b  c  d  e  f  g  h \e[0m"
       puts
     end
   
@@ -20,11 +18,9 @@ module Displayable
     # 36 = cyan colored text
     def print_board
       @data.each_with_index do |row, index|
-        # print "\e[36m #{8 - index} \e[0m"
-        print "\e[36m #{0 + index} \e[0m"
+        print "\e[36m #{8 - index} \e[0m"
         print_row(row, index)
-        print "\e[36m #{0 + index} \e[0m"
-        # print "\e[36m #{8 - index} \e[0m"
+        print "\e[36m #{8 - index} \e[0m"
         puts
       end
     end
@@ -58,9 +54,9 @@ module Displayable
         @previous_piece&.location
         46
       elsif (row_index + column_index).even?
-        100
+        47
       else
-        40
+        100
       end
     end
 
