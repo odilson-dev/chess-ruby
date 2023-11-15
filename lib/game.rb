@@ -28,8 +28,7 @@ class ChessGame
         current_player = player_1
         loop do
             @chessboard.display
-            puts "#{current_player.name}'s captured pieces:"
-            puts current_player.captured_pieces.map { |piece| piece.symbol }.join(" ").colorize(background: :cyan)
+            current_player.show_captured_piece
             puts "It's #{current_player.name}'s turn"
             puts "Choose the piece you want to move. eg(d1)"
             position_of_the_choosed_piece = gets.chomp
@@ -172,8 +171,7 @@ class ChessGame
 
                 else    
                     @chessboard.display
-                    puts "#{current_player.name}'s captured pieces:"
-                    puts current_player.captured_pieces.map { |piece| piece.symbol }.join(" ").colorize(background: :cyan)
+                    current_player.show_captured_piece
                     loop do
                         puts "Choose the position you want to move your piece to"
                         if current_player.class.name == "Player"
@@ -245,6 +243,87 @@ class ChessGame
     end
 
 
+    def play_with_two_ai
+        
+        player_1 = AI.new("Siri", "white")
+
+        player_2 = AI.new("Alexa", "black")
+
+        puts "Hello, my name is #{player_1.name}, and i'll play with the white pieces"
+        sleep(3)
+        puts "Hello, my name is #{player_2.name}, and i'll play with the black pieces"
+        sleep(3)
+        setup(@chessboard)
+        
+        puts "Let's start playing chess right now".light_blue
+        current_player = player_1
+        loop do
+            @chessboard.display
+            current_player.show_captured_piece
+            puts "It's #{current_player.name}'s turn"
+            sleep(1)
+            position_of_the_choosed_piece = current_player.choose_a_piece_to_move(@chessboard)
+
+            array_index_positions = convert(position_of_the_choosed_piece)
+            @chessboard.active_piece = @chessboard.data[array_index_positions[0]][array_index_positions[1]]
+            
+         
+            @chessboard.display
+            current_player.show_captured_piece
+            do_break = false
+            loop do
+                new_position = current_player.choose_a_position_to_move(@chessboard.active_piece)
+                sleep(1)
+                array_indexes_of_new_positions = convert(new_position)
+                # Check if the position of the choosed piece is included inside the active_piece's attack_moves
+        
+                if @chessboard.active_piece.attack_moves.include?(array_indexes_of_new_positions)
+                    the_attacked_piece = @chessboard.data.dig(array_indexes_of_new_positions[0], array_indexes_of_new_positions[1])
+
+                    if the_attacked_piece.class.name == "King"
+                        do_break = true 
+                        puts "CHECKMATE".light_green
+                        puts "Congratulations #{current_player.name}, you win!!!".light_green
+                        break
+                    end
+
+
+                    # Capture the enemy's piece
+                    @chessboard.remove(the_attacked_piece)
+                    the_attacked_piece.position = nil
+                    current_player.captured_pieces << the_attacked_piece
+
+                    #remove the active piece with old position
+                    @chessboard.remove(@chessboard.active_piece)
+
+                    # Add the active piece to the new position
+                    @chessboard.active_piece.position = array_indexes_of_new_positions
+                    @chessboard.add(@chessboard.active_piece)
+                    @chessboard.active_piece = nil
+                    
+                    break
+
+                # Check if the position of the choosed piece is included inside the active_piece's allowed_moves
+                elsif @chessboard.active_piece.allowed_moves.include?(array_indexes_of_new_positions)
+
+                    #remove the active piece with old position
+                    @chessboard.remove(@chessboard.active_piece)
+                    # Add the active piece with the new position
+                    @chessboard.active_piece.position = array_indexes_of_new_positions
+                    @chessboard.add(@chessboard.active_piece)
+                    @chessboard.active_piece = nil
+                    break
+                else
+                    puts "WARNING, you can't move this piece there".light_red
+                    redo
+                end
+            end
+           break if do_break
+            current_player == player_1 ? current_player = player_2 : current_player = player_1
+        end
+    end
+
+
     # convert player inputs to arrays locgic
     def convert(input)
         input_array = input.split("")
@@ -275,7 +354,7 @@ class ChessGame
 end
 
 game = ChessGame.new
-game.play_between_human_and_ai
+game.play_with_two_ai
 
 chessboard = ChessBoard.new
 
