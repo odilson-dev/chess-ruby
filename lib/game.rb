@@ -36,6 +36,7 @@ class ChessGame
             if position_of_the_choosed_piece.length != 2
                 puts "Invalid input".light_red
                 puts "Your position should be two characters length".light_blue
+                sleep(3)
                 redo
                 
             elsif (("a".."h").to_a.include?(position_of_the_choosed_piece[0]) && ("1".."8").to_a.include?(position_of_the_choosed_piece[1]))
@@ -44,12 +45,19 @@ class ChessGame
                 @chessboard.active_piece = @chessboard.data[array_index_positions[0]][array_index_positions[1]]
                 
                 if @chessboard.active_piece.nil?
-                    puts "This square doesn't have any #{current_player.piece_color} piece \nPlease try again"
-                    @chessboard.active_piece = nil
+                    puts "This square doesn't have any #{current_player.piece_color} piece \nPlease try again".light_blue
+                    sleep(3)
                     redo
                 elsif @chessboard.active_piece.color != current_player.piece_color
                     puts "WARNING, You can't move this piece".light_red
                     @chessboard.active_piece = nil
+                    sleep(3)
+                    redo
+
+                elsif @chessboard.active_piece.allowed_moves.empty?
+                    puts "You can't move this piece anywhere".light_blue
+                    puts "Please choose another one".light_blue
+                    sleep(3)
                     redo
 
                 else    
@@ -106,17 +114,20 @@ class ChessGame
                                 break
                             else
                                 puts "WARNING, you can't move this piece there".light_red
+                                sleep(3)
                                 redo
                             end
                         else
                             puts "Invalid input".light_red
                             puts "Your position should be composed of a letter between 'a' and 'h' and a digit between '1' and '8'".light_blue
+                            sleep(3)
                             redo
                         end
                     end
                 end
             else
                 puts "Your position should be composed of a letter between 'a' and 'h' and a digit between '1' and '8'".light_blue
+                sleep(3)
                 redo
                 
             end
@@ -158,6 +169,7 @@ class ChessGame
             if position_of_the_choosed_piece.length != 2
                 puts "Invalid input".light_red
                 puts "Your position should be two characters length".light_blue
+                sleep(3)
                 redo
                 
             elsif (("a".."h").to_a.include?(position_of_the_choosed_piece[0]) && ("1".."8").to_a.include?(position_of_the_choosed_piece[1]))
@@ -166,12 +178,18 @@ class ChessGame
                 @chessboard.active_piece = @chessboard.data[array_index_positions[0]][array_index_positions[1]]
                 
                 if @chessboard.active_piece.nil?
-                    puts "This square doesn't have any #{current_player.piece_color} piece \nPlease try again"
-                    @chessboard.active_piece = nil
+                    puts "This square doesn't have any #{current_player.piece_color} piece \nPlease try again".light_blue
+                    sleep(3)
                     redo
                 elsif @chessboard.active_piece.color != current_player.piece_color
                     puts "WARNING, You can't move this piece".light_red
                     @chessboard.active_piece = nil
+                    sleep(3)
+                    redo
+                elsif @chessboard.active_piece.allowed_moves.empty?
+                    puts "You can't move this piece anywhere".light_blue
+                    puts "Please choose another one".light_blue
+                    sleep(3)
                     redo
 
                 else    
@@ -230,17 +248,20 @@ class ChessGame
                                 break
                             else
                                 puts "WARNING, you can't move this piece there".light_red
+                                sleep(3)
                                 redo
                             end
                         else
                             puts "Invalid input".light_red
                             puts "Your position should be composed of a letter between 'a' and 'h' and a digit between '1' and '8'".light_blue
+                            sleep(3)
                             redo
                         end
                     end
                 end
             else
                 puts "Your position should be composed of a letter between 'a' and 'h' and a digit between '1' and '8'".light_blue
+                sleep(3)
                 redo
                 
             end
@@ -359,16 +380,3 @@ class ChessGame
     end
 
 end
-
-game = ChessGame.new
-game.play_with_two_ai
-
-chessboard = ChessBoard.new
-
-
-
-# setup(chessboard)
-# chessboard.active_piece = chessboard.data.dig(3, 3)
-# p chessboard.active_piece.attack_moves
-# p chessboard.active_piece.allowed_moves
-# chessboard.display
