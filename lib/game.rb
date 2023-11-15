@@ -9,7 +9,7 @@ class ChessGame
         @chessboard = ChessBoard.new
         
     end
-    def play_with_two_humans
+    def human_vs_human
         puts "Player-1 What is your name?"
         name1 = gets.chomp
         player_1 = Player.new(name1, "white")
@@ -26,6 +26,7 @@ class ChessGame
         
 
         current_player = player_1
+        do_break = false
         loop do
             @chessboard.display
             current_player.show_captured_piece
@@ -70,10 +71,12 @@ class ChessGame
                                 the_attacked_piece = @chessboard.data.dig(array_indexes_of_new_positions[0], array_indexes_of_new_positions[1])
 
                                 if the_attacked_piece.class.name == "King"
+                                    do_break = true 
                                     puts "CHECKMATE".light_green
                                     puts "Congratulations #{current_player.name}, you win!!!".light_green
-                                    break 2
+                                    break
                                 end
+            
 
 
                                 # Capture the enemy's piece
@@ -117,12 +120,13 @@ class ChessGame
                 redo
                 
             end
+            break if do_break
             current_player == player_1 ? current_player = player_2 : current_player = player_1
         end
     end
 
 
-    def play_between_human_and_ai
+    def human_vs_ai
         puts "Player-1 What is your name?"
         name1 = gets.chomp
         player_1 = Player.new(name1, "white")
@@ -139,6 +143,7 @@ class ChessGame
         
 
         current_player = player_1
+        do_break = false
         loop do
             @chessboard.display
             current_player.show_captured_piece
@@ -191,11 +196,12 @@ class ChessGame
                                 the_attacked_piece = @chessboard.data.dig(array_indexes_of_new_positions[0], array_indexes_of_new_positions[1])
 
                                 if the_attacked_piece.class.name == "King"
+                                    do_break = true 
                                     puts "CHECKMATE".light_green
                                     puts "Congratulations #{current_player.name}, you win!!!".light_green
-                                    break 2
+                                    break
                                 end
-
+            
 
                                 # Capture the enemy's piece
                                 @chessboard.remove(the_attacked_piece)
@@ -238,12 +244,13 @@ class ChessGame
                 redo
                 
             end
+            break if do_break
             current_player == player_1 ? current_player = player_2 : current_player = player_1
         end
     end
 
 
-    def play_with_two_ai
+    def ai_vs_ai
         
         player_1 = AI.new("Siri", "white")
 
@@ -257,6 +264,7 @@ class ChessGame
         
         puts "Let's start playing chess right now".light_blue
         current_player = player_1
+        do_break = false
         loop do
             @chessboard.display
             current_player.show_captured_piece
@@ -270,7 +278,6 @@ class ChessGame
          
             @chessboard.display
             current_player.show_captured_piece
-            do_break = false
             loop do
                 new_position = current_player.choose_a_position_to_move(@chessboard.active_piece)
                 sleep(1)
