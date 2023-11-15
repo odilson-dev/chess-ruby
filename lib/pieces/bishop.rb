@@ -44,7 +44,7 @@ class Bishop < Piece
         bottom_left = find_each_attack_diagonally(bottom_left_algorithm, the_chessboard)
         all_attacks.concat(bottom_left)
 
-        all_attacks.select { |attack| attack.length > 1 }
+        all_attacks.select { |attack| attack[0] >= 0 and attack[0] <= 7 and attack[1] >= 0 and attack[1] <= 7}
        
     end
 

@@ -71,6 +71,6 @@ class Rook < Piece
                 break
             end
         end
-        attack_moves    
+        attack_moves.select { |attack| attack[0] >= 0 and attack[0] <= 7 and attack[1] >= 0 and attack[1] <= 7}    
     end
 end

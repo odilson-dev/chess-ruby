@@ -38,7 +38,7 @@ class Knight < Piece
                 all_attacks << position
             end
         end
-        all_attacks
+        all_attacks.select { |attack| attack[0] >= 0 and attack[0] <= 7 and attack[1] >= 0 and attack[1] <= 7}
     end
     
 end

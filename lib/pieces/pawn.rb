@@ -24,13 +24,13 @@ class Pawn < Piece
             attack_moves =  possible_attack.select do |position|
                 the_chessboard.data.dig(position[0], position[1])&.color.is_a?(String) && the_chessboard.data.dig(position[0], position[1])&.color != @color
             end
-            return attack_moves
+            return attack_moves.select { |attack| attack[0] >= 0 and attack[0] <= 7 and attack[1] >= 0 and attack[1] <= 7}
         else
             possible_attack = [[x + 1, y - 1], [x + 1, y + 1]]
             attack_moves =  possible_attack.select do |position|
                 the_chessboard.data.dig(position[0], position[1])&.color.is_a?(String) && the_chessboard.data.dig(position[0], position[1])&.color != @color
             end
-            return attack_moves
+            return attack_moves.select { |attack| attack[0] >= 0 and attack[0] <= 7 and attack[1] >= 0 and attack[1] <= 7}
         end
     end
     

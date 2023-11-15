@@ -31,7 +31,8 @@ class AI < Player
         else
             position = my_piece.attack_moves.sample
         end
-        position
+    
+        convert_inverse(position)
     end
 
     def convert_inverse(input)

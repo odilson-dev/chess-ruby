@@ -198,7 +198,7 @@ module Findable
             if the_chessboard.data.dig(position[0], position[1])&.color == @color
                 next
             elsif the_chessboard.data.dig(position[0], position[1])&.color.is_a?(String) && the_chessboard.data.dig(position[0], position[1])&.color != @color
-                @attack_moves << position
+               
             else
                 allowed_moves << position
             end
