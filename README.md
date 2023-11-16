@@ -33,6 +33,9 @@ I've realized the importance of maintaining modular systems; as the project expa
 
 Despite the challenges, this project was incredibly rewarding, offering a wealth of lessons learned along the way.
 
+## Contact
+italisodilsonwoodly@gmail.com
+
 ## Wikipedia
 https://en.wikipedia.org/wiki/Chess
 
