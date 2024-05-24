@@ -33,17 +33,3 @@ I've realized the importance of maintaining modular systems; as the project expa
 
 Despite the challenges, this project was incredibly rewarding, offering a wealth of lessons learned along the way.
 
-## Contact
-italisodilsonwoodly@gmail.com
-
-## Wikipedia
-https://en.wikipedia.org/wiki/Chess
-
-## Replit Link
-https://replit.com/@odilsonjs/Chess-Ruby-Final-Project
-
-## GitHub Repo Link
-https://github.com/odilsonjs/Chess-Ruby-Final-Project
-
-## Lesson Link
-https://www.theodinproject.com/lessons/ruby-ruby-final-project
